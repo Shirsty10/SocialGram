@@ -1,0 +1,95 @@
+html, body, h1, h2, h3, h4, h5 
+{
+	font-family: "Open Sans", sans-serif
+}
+.head{
+	margin-bottom: 80px
+}
+.foot{
+	margin-top : 80px
+}
+.login-block input,
+.login-block textarea {
+  width: 100%;
+  color: var(--heading-color);
+  background: var(--bg-grey);
+  font-size: 16px;
+  padding: 14px;
+  border: 1px solid black;
+  outline: none;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+}
+
+.log-left.text-center i {
+  color: var(--secondary-color);
+  font-size: 26px;
+}
+
+.login-block textarea {
+  height: 180px;
+  margin: 0 0 20px 0;
+}
+
+.login-block input:focus,
+.login-block textarea:focus {
+  border: 2px solid var(--secondary-color);
+  background: var(--bg-color);
+}
+
+.login-left {
+  box-shadow: var(--box-shadow);
+  padding: 40px;
+}
+
+.login-center {
+    float: none;
+    margin: auto;
+    
+}
+
+.log-details p a:hover {
+  color: var(--secondary-color);
+}
+
+.log-details h6 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+
+.new-user {
+    color: var(--secondary-color);
+    margin-left: 40%;
+    font-weight: 900;
+}
+
+
+
+.four_zero_four_bg{
+    background-image: url(/images/error.gif);
+    height: 400px;
+    width: 390px;
+    background-position: center;
+ }
+
+.four_zero_four_bg h1{
+    font-size:80px;
+ }
+
+.four_zero_four_bg h3{
+    font-size:80px;
+}
+
+.link_404{
+    padding: 10px 20px;
+    margin: 20px 0;
+    display: inline-block;
+ }
+
+.contant_box_404{
+    margin-top:-50px;
+}
+
+
