@@ -1,35 +1,67 @@
 package com.example.shirsty.demoProject.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.example.shirsty.demoProject.annotations.ValidatePassword;
 
 import lombok.Data;
 
-@Data
+
+@Entity
 @ValidatePassword(
         pwd = "pwd",
         cfmpwd = "cfmpwd",
         message = "Passwords do not match!"
 )
-public class Person {
+@Data
+public class Person extends BaseEntity {
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO,generator="native")
+    @GenericGenerator(name = "native",strategy = "native")
+	private int person_id;
+	
 	@NotNull(message = "UserName cannot be null")
 	@NotEmpty(message = "UserName cannot be null")
-	String name;
+	private String name;
 	
 	@NotNull(message = "Birthdate is mandatory field")
 	@NotEmpty(message = "Birthdate is mandatory field")
-	String bday;
+	private String bday;
 	
 	
 	@NotEmpty(message = "Password Field cannot be empty")
-	String pwd;
+	private String pwd;
 	
+	@Transient
 	@NotEmpty(message = "Please confirm the password")
-	String cfmpwd;
+	private String cfmpwd;
 	
-	String bio;
+	private String bio;
+	
+	//name -- column name used in Person table
+	// referencedColumnName --- name used in other(Role) table that is bind with person
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST,targetEntity = Roles.class)
+	@JoinColumn(name = "role_id", referencedColumnName = "role_Id",nullable = false)
+	private Roles roles;
+	
+	 @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL, targetEntity = Address.class)
+	 @JoinColumn(name = "add_id", referencedColumnName = "add_id",nullable = true)
+	 private Address address;
 	
 
 }

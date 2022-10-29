@@ -20,7 +20,8 @@
 <div class="row">
 <div class="col-7">
 
-<form th:action="@{/saveProfile}" th:object="${user}" method="post">
+<form id="form-submit" th:action="@{/saveProfile}" th:object="${user}" method="post">
+<span class="error-msg"></span>
 <span  th:if="${message}"  th:text="${message}" class="alert alert-success" ></span>
   <div style="padding-top:40px" class="form-group">
     <label for="Username">UserName</label>
@@ -38,6 +39,22 @@
     <p class="alert alert-danger" th:if="${#fields.hasErrors('bio')}" th:errors="*{bio}"></p>
   </div>
   
+   <div class="form-group">
+    <label for="add">Address</label>
+    <textarea class="form-control" name="add" th:field="*{add_content}" id="add_content" rows="3"></textarea>
+    <p class="alert alert-danger" th:if="${#fields.hasErrors('add_content')}" th:errors="*{add_content}"></p>
+  </div>
+   <div class="form-group">
+    <label for="city">City</label>
+    <textarea class="form-control" name="city" th:field="*{city}" id="city" ></textarea>
+    <p class="alert alert-danger" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
+  </div>
+   <div class="form-group">
+    <label for="country">Country</label>
+    <textarea class="form-control" name="bio" th:field="*{country}" id="country" ></textarea>
+    <p class="alert alert-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
+  </div>
+  
   <div class="form-group">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">
@@ -53,8 +70,8 @@
 <div class="card">
     <img class="card-img-top" src="/images/img_avatar.png" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">Shirsty Sharma</h5>
-      <p class="card-text">Bio</p>
+      <h5 class="card-title" th:text="${username}"></h5>
+      <p class="card-text" th:text="${'You logged in as - ' + roles}"></p>
     </div>
   </div>
 </div>

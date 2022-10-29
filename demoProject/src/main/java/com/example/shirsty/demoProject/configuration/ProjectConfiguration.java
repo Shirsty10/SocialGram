@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -20,6 +21,7 @@ public class ProjectConfiguration{
     	.authorizeRequests()
     	.mvcMatchers("/login").permitAll()
     	.mvcMatchers("/home").authenticated()
+    	.mvcMatchers("/").authenticated()
     	.mvcMatchers("/myProfile").authenticated()
     	.mvcMatchers("/notification").authenticated()
     	.mvcMatchers("/messages").authenticated()
@@ -37,15 +39,15 @@ public class ProjectConfiguration{
         return http.build();
 	}
     
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        UserDetails user = User.withUsername("user")
-            .password(encoder.encode("12345"))
-            .roles("USER")
-            .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+//    @Bean
+//    public InMemoryUserDetailsManager userDetailsService() {
+//        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        UserDetails user = User.withUsername("user")
+//            .password(encoder.encode("12345"))
+//            .roles("USER")
+//            .build();
+//        return new InMemoryUserDetailsManager(user);
+//    }
     
 //	@Bean
 //    public InMemoryUserDetailsManager userDetailsService() {
@@ -63,8 +65,8 @@ public class ProjectConfiguration{
 //        return new InMemoryUserDetailsManager(user, admin);
 //    }
 //	
-//	  @Bean
-//	    public PasswordEncoder passwordEncoder() {
-//	        return new BCryptPasswordEncoder();
-//	    }
+	  @Bean
+	    public PasswordEncoder passwordEncoder() {
+	        return new BCryptPasswordEncoder();
+	    }
 }

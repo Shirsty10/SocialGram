@@ -1,6 +1,5 @@
 package com.example.shirsty.demoProject.model;
 
-import javax.persistence.Entity;
 
 import lombok.Data;
 
