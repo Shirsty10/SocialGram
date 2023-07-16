@@ -1,5 +1,6 @@
 package com.example.shirsty.demoProject.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,15 +10,20 @@ import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
 
+
+
 @Entity
 @Data
-public class Roles extends BaseEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-	@GenericGenerator(name = "native", strategy = "native")
+public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private int add_id;
 
-	private int role_id;
+    private String add_content;
 
-	private String roleName; 
+    private String city;
+
+    private String country;
 
 }

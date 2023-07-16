@@ -63,12 +63,12 @@ public class profileController {
 		person.setBday(user.getBday());
 		person.setBio(user.getBio());
 		if(person.getAddress() ==null || !(person.getAddress().getAdd_id()>0)){
-            person.setAddress(new Address());
-        }
+			person.setAddress(new Address());
+		}
 		person.getAddress().setAdd_content(user.getAdd_content());
 		person.getAddress().setCity(user.getCity());
 		person.getAddress().setCountry(user.getCountry());
-		
+
 		Person savedUser = personRepo.save(person);
 		session.setAttribute("loggedInUser", savedUser);
 		redirectAttributes.addFlashAttribute("message", "Details Updated Successfully");
