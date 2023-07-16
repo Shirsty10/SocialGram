@@ -15,7 +15,11 @@ public class Roles extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
+<<<<<<< HEAD
 	private int role_id;
+=======
+	private int roleId;
+>>>>>>> origin/master
 	private String roleName; 
 
 }

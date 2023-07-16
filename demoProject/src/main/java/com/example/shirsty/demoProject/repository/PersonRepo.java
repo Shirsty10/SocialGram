@@ -7,5 +7,9 @@ import com.example.shirsty.demoProject.model.Person;
 
 @Repository
 public interface PersonRepo extends JpaRepository<Person, Integer> {
+<<<<<<< HEAD
     Person readByName(String name);
+=======
+
+>>>>>>> origin/master
 }
