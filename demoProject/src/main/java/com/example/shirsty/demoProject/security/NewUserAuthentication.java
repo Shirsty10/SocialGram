@@ -2,6 +2,7 @@ package com.example.shirsty.demoProject.security;
 
 import java.util.*;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -34,8 +35,9 @@ public class NewUserAuthentication implements AuthenticationProvider{
 		String pwd = authentication.getCredentials().toString();
 		
 		Person person = presonRepo.readByName(username);
-		
-		if(null !=person && person.getPerson_id()>0 && passwordEncoder.matches(pwd,person.getPwd())) {
+
+
+		if(null !=person && person.getPersonId()>0 && passwordEncoder.matches(pwd,person.getPwd())) {
 			return new UsernamePasswordAuthenticationToken(person.getName(), pwd, getGrantedAuthorities(person.getRoles()));
 		}else {
 			throw new BadCredentialsException("Invalid credentials!");

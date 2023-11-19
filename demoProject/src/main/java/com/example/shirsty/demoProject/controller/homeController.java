@@ -19,6 +19,7 @@ public class homeController {
 	
 	@RequestMapping(value = {"/home","/",""})
 	public String display(Model model, Authentication auth, HttpSession session) {
+		System.out.println("Auth details "+ auth);
 		Person person = personRepo.readByName(auth.getName());
 		model.addAttribute("username", auth.getName().toUpperCase());
 		model.addAttribute("bday",person.getBday() );

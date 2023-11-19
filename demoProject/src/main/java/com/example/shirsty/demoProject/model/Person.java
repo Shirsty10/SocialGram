@@ -12,15 +12,17 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.example.shirsty.demoProject.annotations.ValidatePassword;
 
-import lombok.Data;
-
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ValidatePassword(
 		pwd = "pwd",
 		cfmpwd = "cfmpwd",

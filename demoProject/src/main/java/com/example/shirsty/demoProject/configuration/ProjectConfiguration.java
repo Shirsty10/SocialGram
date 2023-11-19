@@ -17,7 +17,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class ProjectConfiguration{
     @Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    	http.csrf().ignoringAntMatchers("/saveProfile").ignoringAntMatchers("/public/newUser.html").and()
+    	http.csrf().ignoringAntMatchers("/saveProfile").ignoringAntMatchers("/public/**").and()
+//		http.csrf((csrf) -> csrf.disable())
     	.authorizeRequests()
     	.mvcMatchers("/login").permitAll()
     	.mvcMatchers("/home").authenticated()
@@ -29,17 +30,17 @@ public class ProjectConfiguration{
         .defaultSuccessUrl("/home").failureUrl("/login?error=true").permitAll()
         .and().logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll()
         .and().httpBasic();
-    	// if we are working with h2 database 
+    	// if we are working with h2 database
 //        .antMatchers("/h2-console/**").permitAll()
 //        .anyRequest().permitAll();
 //
 //        // disable frame options
-//        http.headers().frameOptions().disable();
-    	
+        http.headers().frameOptions().disable();
+
         return http.build();
 	}
     
-//    @Bean
+   // @Bean
 //    public InMemoryUserDetailsManager userDetailsService() {
 //        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 //        UserDetails user = User.withUsername("user")
@@ -48,23 +49,22 @@ public class ProjectConfiguration{
 //            .build();
 //        return new InMemoryUserDetailsManager(user);
 //    }
-    
-//	@Bean
-//    public InMemoryUserDetailsManager userDetailsService() {
-//		// The builder will ensure the passwords are encoded before saving in memory
-//        UserDetails admin = User.builder()
-//                .username("user")
-//                .password("12345")
-//                .roles("USER")
-//                .build();
-//        UserDetails user = User.builder()
-//                .username("admin")
-//                .password("54321")
-//                .roles("USER","ADMIN")
-//                .build();
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
-//	
+
+ 	@Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+//		 The builder will ensure the passwords are encoded before saving in memory
+        UserDetails admin = User.builder()
+                .username("user")
+                .password("12345")
+                .roles("USER")
+                .build();
+        UserDetails user = User.builder()
+                .username("admin")
+                .password("54321")
+                .roles("USER","ADMIN")
+                .build();
+        return new InMemoryUserDetailsManager(user, admin); }
+
 	  @Bean
 	    public PasswordEncoder passwordEncoder() {
 	        return new BCryptPasswordEncoder();
